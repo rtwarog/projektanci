@@ -1,23 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Countdown</title>
+
+<style>
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
 
-    /* Responsywne, poprawne tło */
-    background-image: url("images/PJ agenda poziom.jpg");
+    background-image: url("images/PJ_agenda_pozycja.jpg");  /* <<< UPEWNIJ SIĘ, ŻE PLIK MA TAKĄ NAZWĘ */
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;      /* dopasowanie bez zniekształceń */
-    background-color: #000;      /* fallback gdy obraz się ładuje */
+    background-size: cover;
+    background-color: #000;
 }
 
-/* Wyśrodkowanie i brak uciekania licznika */
 #countdown-wrapper {
     margin-top: 20px;
     width: 100%;
     display: flex;
-    justify-content: center;  /* ❗ TERAZ zawsze ładnie wyśrodkowany */
-    padding-left: 0;
+    justify-content: center;
 }
 
 #countdown-box {
@@ -36,7 +40,6 @@ h3 {
     font-weight: 700;
     color: white;
     text-shadow: 0 0 10px rgba(0,0,0,1);
-    letter-spacing: 1px;
     text-align: center;
 }
 
@@ -48,58 +51,95 @@ h3 {
     margin: 6px;
     min-width: 120px;
     color: white;
-
     border: 1px solid rgba(255, 255, 255, 0.7);
     box-shadow: 0 0 16px rgba(255,255,255,0.4);
-    transition: 0.25s ease;
-}
-
-.cd-item:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 26px rgba(255,255,255,0.7);
 }
 
 .cd-value {
     font-size: 48px;
     font-weight: 800;
-    line-height: 1;
-    color: white;
     text-shadow: 0 0 10px rgba(0,0,0,1);
 }
 
 .cd-label {
     margin-top: 8px;
     font-size: 16px;
-    font-weight: 500;
-    color: #eeeeee;
     opacity: 0.95;
-    text-shadow: 0 0 6px rgba(0,0,0,1);
 }
 
-/* 📱 RESPONSYWNOŚĆ NA TELEFONACH */
+/* MOBILE */
 @media (max-width: 900px) {
-    #countdown-box {
-        padding: 20px;
-        transform: scale(0.9);
-    }
-
-    .cd-item {
-        min-width: 90px;
-        padding: 15px 20px;
-    }
-
-    .cd-value {
-        font-size: 34px;
-    }
-
-    h3 {
-        font-size: 22px;
-    }
+    #countdown-box { transform: scale(0.9); }
+    .cd-item { min-width: 90px; padding: 15px 20px; }
+    .cd-value { font-size: 34px; }
+    h3 { font-size: 22px; }
 }
 
-/* Bardzo małe ekrany */
 @media (max-width: 600px) {
-    #countdown-box {
-        transform: scale(0.8);
-    }
+    #countdown-box { transform: scale(0.8); }
 }
+</style>
+</head>
+
+<body>
+
+<div id="countdown-wrapper">
+    <div id="countdown-box">
+        <h3>Do wydarzenia pozostało:</h3>
+
+        <div class="cd-item">
+            <span class="cd-value"></span>
+            <div class="cd-label">Dni</div>
+        </div>
+
+        <div class="cd-item">
+            <span class="cd-value"></span>
+            <div class="cd-label">Godz.</div>
+        </div>
+
+        <div class="cd-item">
+            <span class="cd-value"></span>
+            <div class="cd-label">Min.</div>
+        </div>
+
+        <div class="cd-item">
+            <span class="cd-value"></span>
+            <div class="cd-label">Sek.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+setTimeout(function () {
+
+    const targetDate = new Date(2026, 1, 17, 10, 0, 0).getTime();
+    const values = document.querySelectorAll('.cd-value');
+
+    function updateCountdown() {
+        const now = Date.now();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+            values.forEach(v => v.textContent = '0');
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        values[0].textContent = days;
+        values[1].textContent = hours;
+        values[2].textContent = minutes;
+        values[3].textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+}, 300);
+</script>
+
+</body>
+</html>
