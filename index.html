@@ -10,16 +10,17 @@ body {
     padding: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
 
-    /* TŁO – DZIAŁAJĄCA WERSJA */
-    background-image: url("images/tlo.jpg"); 
+    /* poprawione tło – zawsze pokazuje górę */
+    background-image: url("images/tlo.jpg");
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center top; /* ważne! */
     background-size: cover;
     background-color: #000;
 }
 
+/* przesunięcie licznika w dół, aby nie był na środku */
 #countdown-wrapper {
-    margin-top: 20px;
+    margin-top: 260px;   /* możesz dopasować np. 240 / 300 / 350 px */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -70,14 +71,36 @@ h3 {
 
 /* RESPONSYWNOŚĆ */
 @media (max-width: 900px) {
-    #countdown-box { transform: scale(0.9); }
-    .cd-item { min-width: 90px; padding: 15px 20px; }
-    .cd-value { font-size: 34px; }
-    h3 { font-size: 22px; }
+    #countdown-wrapper {
+        margin-top: 180px;  /* mniejsza wysokość na laptopach/tabletach */
+    }
+
+    #countdown-box { 
+        transform: scale(0.9); 
+    }
+
+    .cd-item { 
+        min-width: 90px; 
+        padding: 15px 20px; 
+    }
+
+    .cd-value { 
+        font-size: 34px; 
+    }
+
+    h3 { 
+        font-size: 22px; 
+    }
 }
 
 @media (max-width: 600px) {
-    #countdown-box { transform: scale(0.8); }
+    #countdown-wrapper {
+        margin-top: 140px; /* telefony */
+    }
+
+    #countdown-box { 
+        transform: scale(0.8); 
+    }
 }
 </style>
 </head>
