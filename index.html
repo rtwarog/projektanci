@@ -42,7 +42,7 @@ html, body {
     display: flex;
     justify-content: center;
 
-    transform: translate(-370px, -250px);
+    transform: translate(-400px, -250px);
     transform-style: preserve-3d; /* ✔ przywraca hover */
     z-index: 10;
 }
@@ -81,8 +81,9 @@ h3 {
 }
 
 .cd-item:hover {
-    transform: scale(1.07); /* ✔ powiększenie na hover */
+    transform: scale(1.07);
     box-shadow: 0 0 26px rgba(255,255,255,0.7);
+    border-color: red; /* 🔥 ramka robi się czerwona */
 }
 
 .cd-value {
@@ -153,7 +154,7 @@ h3 {
 <!-- SKRYPT ODLICZANIA -->
 <script>
 setTimeout(function () {
-    const targetDate = new Date(2026, 1, 17, 10, 0, 0).getTime();
+    const targetDate = new Date(2026, 1, 17, 10, 0, 0).getTime(); // 17 lutego 2026, 10:00
     const values = document.querySelectorAll('.cd-value');
 
     function updateCountdown() {
@@ -166,7 +167,7 @@ setTimeout(function () {
         }
 
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24); 
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
 
@@ -183,4 +184,3 @@ setTimeout(function () {
 
 </body>
 </html>
-
