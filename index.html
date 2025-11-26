@@ -10,20 +10,22 @@ body {
     padding: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
 
-    /* poprawione tło – zawsze pokazuje górę */
+    /* Tło – zawsze pokazuje górę obrazu */
     background-image: url("images/tlo.jpg");
     background-repeat: no-repeat;
-    background-position: center top; /* ważne! */
+    background-position: center top; /* ważne */
     background-size: cover;
     background-color: #000;
 }
 
-/* przesunięcie licznika w dół, aby nie był na środku */
+/* Licznik przesunięty o 300px w lewo i 300px w górę */
 #countdown-wrapper {
-    margin-top: 260px;   /* możesz dopasować np. 240 / 300 / 350 px */
+    margin-top: 260px; /* bazowa odległość od góry */
     width: 100%;
     display: flex;
     justify-content: center;
+
+    transform: translate(-300px, -300px); /* przesunięcie: lewo, góra */
 }
 
 #countdown-box {
@@ -72,7 +74,8 @@ h3 {
 /* RESPONSYWNOŚĆ */
 @media (max-width: 900px) {
     #countdown-wrapper {
-        margin-top: 180px;  /* mniejsza wysokość na laptopach/tabletach */
+        margin-top: 180px;
+        transform: translate(-200px, -200px); /* mniejsze przesunięcie na tablety */
     }
 
     #countdown-box { 
@@ -95,7 +98,8 @@ h3 {
 
 @media (max-width: 600px) {
     #countdown-wrapper {
-        margin-top: 140px; /* telefony */
+        margin-top: 140px;
+        transform: translate(-150px, -150px); /* mniejsze przesunięcie na telefon */
     }
 
     #countdown-box { 
@@ -135,7 +139,6 @@ h3 {
 
 <script>
 setTimeout(function () {
-
     const targetDate = new Date(2026, 1, 17, 10, 0, 0).getTime();
     const values = document.querySelectorAll('.cd-value');
 
