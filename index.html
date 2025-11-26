@@ -10,22 +10,21 @@ body {
     padding: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
 
-    /* Tło – zawsze pokazuje górę obrazu */
     background-image: url("images/tlo.jpg");
     background-repeat: no-repeat;
-    background-position: center top; /* ważne */
-    background-size: cover;
+    background-position: center top;
+    background-size: contain;  /* <—— dopasowanie do ekranu 1920×1080 */
     background-color: #000;
 }
 
 /* Licznik przesunięty o 300px w lewo i 300px w górę */
 #countdown-wrapper {
-    margin-top: 260px; /* bazowa odległość od góry */
+    margin-top: 260px;
     width: 100%;
     display: flex;
     justify-content: center;
 
-    transform: translate(-400px, -250px); /* przesunięcie: lewo, góra */
+    transform: translate(-400px, -250px);
 }
 
 #countdown-box {
@@ -75,31 +74,18 @@ h3 {
 @media (max-width: 900px) {
     #countdown-wrapper {
         margin-top: 180px;
-        transform: translate(-200px, -200px); /* mniejsze przesunięcie na tablety */
+        transform: translate(-200px, -200px);
     }
 
     #countdown-box { 
         transform: scale(0.9); 
-    }
-
-    .cd-item { 
-        min-width: 90px; 
-        padding: 15px 20px; 
-    }
-
-    .cd-value { 
-        font-size: 34px; 
-    }
-
-    h3 { 
-        font-size: 22px; 
     }
 }
 
 @media (max-width: 600px) {
     #countdown-wrapper {
         margin-top: 140px;
-        transform: translate(-150px, -150px); /* mniejsze przesunięcie na telefon */
+        transform: translate(-150px, -150px);
     }
 
     #countdown-box { 
@@ -170,4 +156,3 @@ setTimeout(function () {
 
 </body>
 </html>
-
