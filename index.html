@@ -28,22 +28,22 @@ html, body {
 #bg-container img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* dopasowanie BEZ obcinania */
+    object-fit: contain;
     display: block;
     user-select: none;
     pointer-events: none;
 }
 
-/* ---- TWOJA POZYCJA LICZNIKA ---- */
+/* ---- LICZNIK: 50% + LEWY GÓRNY RÓG ---- */
 #countdown-wrapper {
-    position: relative;
-    margin-top: 260px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    position: fixed;
+    top: 20px;
+    left: 20px;
 
-    transform: translate(-350px, -250px);
-    transform-style: preserve-3d; /* ✔ przywraca hover */
+    transform: scale(0.5);
+    transform-origin: top left;
+    transform-style: preserve-3d;
+
     z-index: 10;
 }
 
@@ -76,14 +76,13 @@ h3 {
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.7);
     box-shadow: 0 0 16px rgba(255,255,255,0.4);
-
-    transition: 0.25s ease; /* ✔ hover działa */
+    transition: 0.25s ease;
 }
 
 .cd-item:hover {
     transform: scale(1.07);
     box-shadow: 0 0 26px rgba(255,255,255,0.7);
-    border-color: red; /* 🔥 ramka robi się czerwona */
+    border-color: red;
 }
 
 .cd-value {
@@ -96,23 +95,6 @@ h3 {
     margin-top: 8px;
     font-size: 16px;
     opacity: 0.95;
-}
-
-/* RESPONSYWNOŚĆ */
-@media (max-width: 900px) {
-    #countdown-wrapper {
-        margin-top: 180px;
-        transform: translate(-200px, -200px);
-    }
-    #countdown-box { transform: scale(0.9); }
-}
-
-@media (max-width: 600px) {
-    #countdown-wrapper {
-        margin-top: 140px;
-        transform: translate(-150px, -150px);
-    }
-    #countdown-box { transform: scale(0.8); }
 }
 </style>
 </head>
@@ -154,7 +136,7 @@ h3 {
 <!-- SKRYPT ODLICZANIA -->
 <script>
 setTimeout(function () {
-    const targetDate = new Date(2026, 1, 17, 9, 0, 0).getTime(); // 17 lutego 2026, 10:00
+    const targetDate = new Date(2026, 1, 17, 9, 0, 0).getTime();
     const values = document.querySelectorAll('.cd-value');
 
     function updateCountdown() {
@@ -184,6 +166,3 @@ setTimeout(function () {
 
 </body>
 </html>
-
-
-
